@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+/**
+ * Simple CSS File
+ */
+ 
+/**
+ * Reset
+ *
+ * @section reset
+ * @see     YUI Reset CSS, http://developer.yahoo.com/yui/reset/
+ */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+
+/**
+ * @section struct
+ */
+.access, .skip {display:none;}
+.clear {clear:both;}
+.silent {text-decoration:inherit; color:inherit;}
+div.spacer {margin-bottom:24px;}
+* html a.silent {text-decoration:none;}
+
+
+/**
+ * Main Layout
+ *
+ * |----------- 920 -----------|
+ *
+ * @section main layout
+ */
+html,body {height:100%;}
+body {margin:0;}
+body {position:relative;} /* @workaround for ie 7 */
+body {background:#fff url(i/bg-portrait.jpg) 0 0 no-repeat;}
+html, body {min-height:100%;}
+
+#page {min-height:100%; width:920px;}
+* html #page {height:100%;}
+#header {left:40px; position:absolute; top:40px;}
+#content {padding-left:252px; float:left; width:668px;}
+#nav {float:left; margin-left:-880px; width:192px;}
+#footer {width:920px;}
+
+/**
+ * @section font
+ */
+body {font-family:free sans, arial, helvetica, sans-serif; font-size:12px; color:#3c3934;}
+body a {color:#3c3934;}
