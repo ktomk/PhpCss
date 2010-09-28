@@ -11,12 +11,13 @@ require_once('inc/setup.php');
 
 print("PhpCss Demo: CSS Selector with Comments\n\n");
 
-$css = 'bo/**/dy .cl/**/ass';
+$css = 'body/* comment */ .class';
 
 printf("CSS Selector '%s' (%d)\n", $css, strlen($css));
 
 $tokens = array();
 $status = new PhpCssScannerStatusComment();
+$status = new PhpCssScannerStatusSelector();
 $scanner = new PhpCssScanner($status);
 
 $offset = $scanner->scan($tokens, $css);
