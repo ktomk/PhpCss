@@ -48,19 +48,45 @@ abstract class PhpCssScannerStatus {
   *
   * @param string $buffer
   * @param integer $offset
-  * @param string $pattern
-  * @return string|NULL
+  * @param string|array $pattern
+  * @param integer $group (optional) backreference, standard is 0
+  * @return string|NULL text of pattern or NULL if no match
   */
   public function matchPattern($buffer, $offset, $pattern) {
+  	$index = 0;
+  	if(is_array($pattern)) {
+  		$index = array_pop($pattern);
+  		$pattern = reset($pattern);
+  	}
+  	return $this->matchOffset($buffer, $offset, $pattern, $index);
+  }
+  /**
+   * Checks if the given offset position matches the pattern and
+   * return a specific subpattern match.
+   * 
+   * @param string $buffer
+   * @param integer $offset
+   * @param string $pattern
+   * @param integer $index
+   * @param string|NULL$index
+   */
+  public function matchSubpattern($buffer, $offset, $pattern, $index) {
+  	return $this->matchOffset($buffer, $offset, $pattern, $index);
+  }
+  private function matchOffset($buffer, $offset, $pattern, $index) {
+  	$return = NULL;
     $found = preg_match(
       $pattern, $buffer, $match, PREG_OFFSET_CAPTURE, $offset
     );
-    if ($found &&
-        isset($match[0]) &&
-        isset($match[0][1]) &&
-        $match[0][1] === $offset) {
-      return $match[0][0];
+    if (false === $found) {
+    	$error = preg_last_error();
+    	throw new UnexpectedValueException(sprintf('Regular expression ("%s") problem (Error-Code: %d).', $pattern, $error));
     }
-    return NULL;
+	$found
+      && isset($match[$index][1])
+      && $match[$index][1] === $offset
+      && $return = $match[$index][0]
+	;
+    return $return;
   }
 }

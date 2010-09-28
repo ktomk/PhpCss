@@ -21,10 +21,10 @@ class PhpCssScannerToken {
   // special any token (a joker)
   const ANY = 255;
 
-  //whitespace
+  // whitespace
   const WHITESPACE = 0;
 
-  //simple selectors
+  // simple selectors
   const TYPE_SELECTOR = 1;
   const CLASS_SELECTOR = 2;
   const ID_SELECTOR = 3;
@@ -39,11 +39,17 @@ class PhpCssScannerToken {
   const PARAMETERS_START = 31;
   const PARAMETERS_END = 32;
 
-  //selector separator
+  // selector separator
   const COMBINATOR = 41;
   const SEPARATOR = 42;
-
-  //single quoted strings
+  
+  // comment
+  const COMMENT_START = 50;
+  const COMMENT_END = 51;
+  const COMMENT_OUTER = 52;
+  const COMMENT_INNER = 53;
+  
+  // single quoted strings
   const SINGLEQUOTE_STRING_START = 100;
   const SINGLEQUOTE_STRING_END = 101;
   // double quoted strings
@@ -67,6 +73,10 @@ class PhpCssScannerToken {
     self::PARAMETERS_END => 'PSEUDOCLASS_PARAMETERS_END',
     self::COMBINATOR => 'SELECTOR_COMBINATOR',
     self::SEPARATOR => 'SELECTOR_SEPARATOR',
+  	self::COMMENT_START => 'COMMENT_START',
+  	self::COMMENT_END => 'COMMENT_END',
+  	self::COMMENT_INNER => 'COMMENT_INNER',
+  	self::COMMENT_OUTER => 'COMMENT_OUTER',
     self::SINGLEQUOTE_STRING_START => 'STRING_SINGLE_QUOTE_START',
     self::SINGLEQUOTE_STRING_END => 'STRING_SINGLE_QUOTE_END',
     self::DOUBLEQUOTE_STRING_START => 'STRING_DOUBLE_QUOTE_START',
@@ -105,9 +115,16 @@ class PhpCssScannerToken {
   * @return PhpCssScannerToken
   */
   public function __construct($type = 0, $content = '', $position = -1) {
+  	if (!isset(self::$_names[$type])) {
+  	  throw new InvalidArgumentException(sprintf('Unknown type "%s".', $type));
+  	}
+  	$length = strlen($content);
+  	if (!$length) {
+  	  throw new InvalidArgumentException('A token must have content.');
+  	}
     $this->_type = $type;
     $this->_content = $content;
-    $this->_length = strlen($content);
+    $this->_length = $length;
     $this->_position = $position;
   }
 
@@ -157,6 +174,11 @@ class PhpCssScannerToken {
   * @return string
   */
   public static function typeToString($type) {
+  	if (!isset(self::$_names[$type])) {
+  		user_error(sprintf('Type "%s" is not set.', $type), E_USER_WARNING);
+  		debug_print_backtrace();
+  		die();
+  	}
     return self::$_names[$type];
   }
 

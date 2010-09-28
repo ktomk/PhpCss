@@ -52,7 +52,7 @@ class PhpCssScanner {
   *
   * @param array $target token target
   * @param string $string content string
-  * @param integer $offset start offset
+  * @param integer $offset (optional) start offset
   * @return integer new offset
   */
   public function scan(&$target, $string, $offset = 0) {
@@ -71,20 +71,35 @@ class PhpCssScanner {
       }
     }
     if ($this->_offset < strlen($this->_buffer)) {
-      /**
-      * @todo a some substring logic for large strings
-      */
-      throw new UnexpectedValueException(
-        sprintf(
-          'Invalid char "%s" for status "%s" at offset #%d in "%s"',
-          substr($this->_buffer, $this->_offset, 1),
-          get_class($this->_status),
-          $this->_offset,
-          $this->_buffer
-        )
-      );
+      $this->throwInvalidCharException($target);
     }
     return $this->_offset;
+  }
+  
+  private function throwInvalidCharException() {
+    $char = substr($this->_buffer, $this->_offset, 1);
+    $bufferLen = strlen($this->_buffer);
+    if ( 30 > $bufferLen) {
+      $buffer = $this->_buffer;
+    } else {
+      $buffer = substr($this->_buffer, 0, 12);
+      $buffer .= ' ... ';
+      $buffer .= substr($this->_buffer, -12);
+    }
+    $status = get_class($this->_status);
+    if ('PhpCssScannerStatus' === substr($status, 0, 19)) {
+    	$status = substr($status, 19);
+    }
+    throw new UnexpectedValueException(
+      sprintf(
+        'Invalid char "%s" for status "%s" at offset #%d in "%s" (length: #%d)',
+        $char,
+        $status,
+        $this->_offset,
+        $buffer,
+        strlen($this->_buffer)
+      )
+    );
   }
 
   /**
