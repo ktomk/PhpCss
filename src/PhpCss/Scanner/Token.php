@@ -2,6 +2,11 @@
 /**
 * PhpCssScannerToken represents a token from a scan.
 *
+* Copyright (c) 2010 Bastian Feder, Thomas Weinert
+* Copyright (c) 2010 Tom Klingenberg
+* 
+* Licensed under the MIT License, see license.txt
+* 
 * @version $Id: Token.php 429 2010-03-29 08:05:32Z subjective $
 * @license http://www.opensource.org/licenses/mit-license.php The MIT License
 * @copyright Copyright (c) 2010 Bastian Feder, Thomas Weinert
@@ -75,8 +80,8 @@ class PhpCssScannerToken {
     self::SEPARATOR => 'SELECTOR_SEPARATOR',
   	self::COMMENT_START => 'COMMENT_START',
   	self::COMMENT_END => 'COMMENT_END',
-  	self::COMMENT_INNER => 'COMMENT_INNER',
   	self::COMMENT_OUTER => 'COMMENT_OUTER',
+  	self::COMMENT_INNER => 'COMMENT_INNER',
     self::SINGLEQUOTE_STRING_START => 'STRING_SINGLE_QUOTE_START',
     self::SINGLEQUOTE_STRING_END => 'STRING_SINGLE_QUOTE_END',
     self::DOUBLEQUOTE_STRING_START => 'STRING_DOUBLE_QUOTE_START',

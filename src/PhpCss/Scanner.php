@@ -2,6 +2,11 @@
 /**
 * PhpCssScanner scans a string for tokens.
 *
+* Copyright (c) 2010 Bastian Feder, Thomas Weinert
+* Copyright (c) 2010 Tom Klingenberg
+* 
+* Licensed under the MIT License, see license.txt
+* 
 * @version $Id: Scanner.php 429 2010-03-29 08:05:32Z subjective $
 * @license http://www.opensource.org/licenses/mit-license.php The MIT License
 * @copyright Copyright (c) 2010 Bastian Feder, Thomas Weinert

@@ -2,6 +2,11 @@
 /**
 * PhpCssScannerStatus is the abstract subperclass for all scanner status implementations
 *
+* Copyright (c) 2009 Bastian Feder, Thomas Weinert
+* Copyright (c) 2010 Tom Klingenberg
+* 
+* Licensed under the MIT License, see license.txt
+* 
 * @version $Id: Status.php 429 2010-03-29 08:05:32Z subjective $
 * @license http://www.opensource.org/licenses/mit-license.php The MIT License
 * @copyright Copyright (c) 2009 Bastian Feder, Thomas Weinert
@@ -80,7 +85,7 @@ abstract class PhpCssScannerStatus {
     );
     if (false === $found) {
     	$error = preg_last_error();
-    	throw new UnexpectedValueException(sprintf('Regular expression ("%s") problem (Error-Code: %d).', $pattern, $error));
+    	throw new UnexpectedValueException(sprintf('Regular expression ("%s") failed (Error-Code: %d).', $pattern, $error));
     }
 	$found
       && isset($match[$index][1])

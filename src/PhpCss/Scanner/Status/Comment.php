@@ -3,10 +3,10 @@
 * PhpCss Scanner Status Comment
 * 
 * Copyright (c) 2009 Basitan Feder, Thomas Weinert
-* Copyriǵht (c) 2010 Tom Klingenberg
+* Copyright (c) 2010 Tom Klingenberg
 * 
 * Licensed under the MIT License, see license.txt
-*
+* 
 * @version $Id: Default.php 429 2010-03-29 08:05:32Z subjective $
 * @license http://www.opensource.org/licenses/mit-license.php The MIT License
 * @copyright Copyright (c) 2009 Bastian Feder, Thomas Weinert
@@ -23,18 +23,6 @@
 */
 class PhpCssScannerStatusComment extends PhpCssScannerStatus {
   private $inComment = false;
-
- /**
-  * patterns for tokens
-  * @var array
-  */
-  protected $_tokenPatterns = array(
-    PhpCssScannerToken::COMMENT_END => '(\*/)S',
- 	PhpCssScannerToken::COMMENT_START => '(/\*)S',  
-    array(PhpCssScannerToken::COMMENT_OUTER, '((.*?)(/\*))S', 1),
-    array(PhpCssScannerToken::COMMENT_INNER, '((.*?)(\*/))S', 1),
-    array(PhpCssScannerToken::COMMENT_OUTER, '(.*)S', 0),
-  );
   
   /**
   * test for token at offset.
