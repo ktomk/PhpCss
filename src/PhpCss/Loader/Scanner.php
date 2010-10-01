@@ -1,6 +1,6 @@
 <?php
 
-$path = dirname(dirname(__FILE__));
+$path = dirname(__FILE__).'/..';
 
 return array(
   'PhpCssScanner' => $path.'/Scanner.php',
@@ -8,6 +8,7 @@ return array(
   'PhpCssScannerStatusComment' => $path.'/Scanner/Status/Comment.php',
   'PhpCssScannerStatusSelector' => $path.'/Scanner/Status/Selector.php',
   'PhpCssScannerStatusSelectorAttribute' => $path.'/Scanner/Status/Selector/Attribute.php',
+  'PhpCssScannerStatusStringAbstract' => $path.'/Scanner/Status/String/Abstract.php',
   'PhpCssScannerStatusStringDouble' => $path.'/Scanner/Status/String/Double.php',
   'PhpCssScannerStatusStringSingle' => $path.'/Scanner/Status/String/Single.php',
   'PhpCssScannerToken' => $path.'/Scanner/Token.php',
