@@ -73,7 +73,7 @@ abstract class PhpCssScannerStatus {
    * @param integer $offset
    * @param string $pattern
    * @param integer $index
-   * @param string|NULL$index
+   * @return string|NULL text of pattern or NULL if no match
    */
   public function matchSubpattern($buffer, $offset, $pattern, $index) {
   	return $this->matchOffset($buffer, $offset, $pattern, $index);
