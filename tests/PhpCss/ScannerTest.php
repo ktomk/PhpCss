@@ -212,7 +212,7 @@ class PhpCssScannerTest extends PhpCssTestCase {
   ******************************/
 
   private function getTokenMockObjectFixture($length) {
-    $token = $this->getMock('PhpCssScannerToken');
+    $token = $this->getMock('PhpCssScannerToken', array(), array(), '', false);
     $token
       ->expects($this->any())
       ->method('__get')
