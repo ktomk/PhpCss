@@ -124,8 +124,8 @@ class PhpCssScannerToken {
   	  throw new InvalidArgumentException(sprintf('Unknown type "%s".', $type));
   	}
   	$length = strlen($content);
-  	if (!$length) {
-  	  throw new InvalidArgumentException('A token must have content.');
+  	if (0 === $length && PhpCssScannerToken::ANY != $type) {
+  	  throw new InvalidArgumentException('A specific token must have content.');
   	}
     $this->_type = $type;
     $this->_content = $content;
