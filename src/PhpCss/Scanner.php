@@ -113,8 +113,8 @@ class PhpCssScanner {
   * @return PhpCssScannerToken|NULL
   */
   private function _next() {
-    if (($token = $this->_status->getToken($this->_buffer, $this->_offset)) &&
-        $token->length > 0) {
+    $token = $this->_status->getToken($this->_buffer, $this->_offset);
+    if ( $token && $token->length > 0) {
       $this->_offset += $token->length;
       return $token;
     }
